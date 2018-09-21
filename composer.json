@@ -1,0 +1,17 @@
+{
+    "name": "nyl/easy-filters-eloquent",
+    "description": "Descri",
+    "authors": [
+        {
+            "name": "Nyl Marcos",
+            "email": "nylmarcos@gmail.com"
+        }
+    ],
+    "require": {
+    	"php": ">=7.0.0",
+        "tucker-eric/eloquentfilter": "^1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    }
+}
