@@ -1,9 +1,8 @@
 <?php 
-namespace App\Models;
+namespace RansackEloquent;
 
 use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionMethod;
 
