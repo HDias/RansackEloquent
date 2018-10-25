@@ -116,7 +116,7 @@ trait RansackEloquentTrait
     }
 
     
-    public function scopeFilterr($query, array $dados = [])
+    public function scopeRanFilter($query, array $dados = [])
     {
         foreach ($dados as $key => $value) {
             $listOr = explode("_or_", $key);

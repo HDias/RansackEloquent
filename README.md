@@ -2,26 +2,32 @@
 
 Pesquisa baseado em query string
 
-## Introdução
+#### Instalação
+```
+composer require nyl/ransack-eloquent @dev
+```
 
-Você precisa realizar uma busca em ...
+#### Introdução
 
-`/users?name=er&last_name=&company_id=2&roles[]=1&roles[]=4&roles[]=7&industry=5`
-
-`$request->all()` will return:
-
+Laravel 5.5
+ - Adicione ao sua Model a trait `RansackEloquentTrait`
 ```php
-[
-    'name'       => 'er',
-    'last_name'  => '',
-    'company_id' => '2',
-    'roles'      => ['1','4','7'],
-    'industry'   => '5'
-]
+class Student extends Model
+{
+    use \RansackEloquent\RansackEloquentTrait;
+    ...
 ```
-## Instalação
-```
-composer require nyl/ransack-eloquent
+ - No seu Controller
+```php
+class StudentController extends Controller
+{
+    public function index(\Illuminate\Http\Request $request)
+    {
+        $students = Student::ranFilter($request->all())->get();
+    ...
 ```
 
-## Usando
+#### Parametros de Pesquisa
+ Na rota para a action index do `StudentController` deve ser passado query params
+
+- Por ID `/student/index?id_eq=1` vai gerar a SQL `"select * from "students" where "students"."id" = 1"`
