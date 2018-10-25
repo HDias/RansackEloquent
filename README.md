@@ -1,3 +1,4 @@
+
 #  Ransack Eloquent
 
 Pesquisa baseado em query string
@@ -31,3 +32,16 @@ class StudentController extends Controller
  Na rota para a action index do `StudentController` deve ser passado query params
 
 - Por ID `/student/index?id_eq=1` vai gerar a SQL `"select * from "students" where "students"."id" = 1"`
+
+### Busca
+
+Lista de possíveis buscas
+
+| Predicate | Description | Notes |
+| ------------- | ------------- |-------- |
+| `*_eq`  | igual  | SQL: `coluna = valor | |
+| `*_not_eq` | diferente |SQL: `coluna != valor  |
+| `*_cont` | Contém o valor | SQL: `coluna ILIKE '%valor%' |
+| `*_not_cont` | Não contém o valor |SQL: `coluna NOT ILIKE '%valor%'
+| `*_start` | Does not contain any of | SQL: `coluna LIKE 'valor%'` |
+| `*_end` | Does not contain all of |SQL: `coluna LIKE '%valor' 
