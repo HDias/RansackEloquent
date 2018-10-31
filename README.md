@@ -1,4 +1,5 @@
 
+
 #  Ransack Eloquent
 
 Pesquisa baseado em query string
@@ -45,3 +46,7 @@ Lista de possíveis buscas
 | `*_not_cont` | Não contém o valor |SQL: `coluna NOT ILIKE '%valor%'
 | `*_start` | Does not contain any of | SQL: `coluna LIKE 'valor%'` |
 | `*_end` | Does not contain all of |SQL: `coluna LIKE '%valor' 
+
+### Campos com underscore (_)
+
+Caso o campo da sua tabela possua underscore (_). Exemplo: user_id. Nesse caso é necessário utilizar CamelCase no name do formulário html (ficaria userId) para referenciar o campo.
