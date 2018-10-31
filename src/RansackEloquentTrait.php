@@ -76,18 +76,18 @@ trait RansackEloquentTrait
             $item = explode("_", $value);
             switch (count($item)) {
                 case 1:
-                    $this->orWheres['columns'][] = $this->getTable().'.'.$value;
+                    $this->orWheres['columns'][] = $this->getTable().'.'.snake_case($value);
 
                     break;
                 case 2:
-                    $this->orWheres['columns'][] = $this->getTable().'.'.$item[0];
+                    $this->orWheres['columns'][] = $this->getTable().'.'.snake_case($item[0]);
                     $this->orWheres['operator'] = $item[1];
                     $this->orWheres['value'] = $valor;
 
                     break;
                 case 3:
 
-                    $relationships = $this->relationships();
+                    $relationships = $this->ranRelationships();
                     if (!isset($relationships[$item[0]])) {
                         continue;
                     }
@@ -96,7 +96,7 @@ trait RansackEloquentTrait
 
                     $this->addJoin($relation);
 
-                    $this->orWheres['columns'][] = $relation->getTable().'.'.$item[1];
+                    $this->orWheres['columns'][] = $relation->getTable().'.'.snake_case($item[1]);
                     $this->orWheres['operator'] = $item[2];
                     $this->orWheres['value'] = $valor;
                     
@@ -127,7 +127,7 @@ trait RansackEloquentTrait
                 if (count($operatorColumn) == 2 && isset($this->operators[$operatorColumn[1]])) { 
                     $this->andWheres[] = [
                         'operator' => $operatorColumn[1],
-                        'column' => $this->getTable().'.'.$operatorColumn[0],
+                        'column' => $this->getTable().'.'.snake_case($operatorColumn[0]),
                         'value' => $value,
                     ];
                 } elseif (count(explode("_", $key)) == 3) {
@@ -144,7 +144,7 @@ trait RansackEloquentTrait
                 
                     $this->andWheres[] = [
                         'operator' => $relationship[2],
-                        'column' => $relation->getTable().'.'.$relationship[1],
+                        'column' => $relation->getTable().'.'.snake_case($relationship[1]),
                         'value' => $value,
                     ];
 
@@ -173,7 +173,7 @@ trait RansackEloquentTrait
         return $query;
     }
 
-    public function relationships()
+    public function ranRelationships()
     {
         try {
             $model = new static;
